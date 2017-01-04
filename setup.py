@@ -9,17 +9,16 @@ def long_desc():
     return readme
 
 setup(name = "match",
-      description = "",
+      description = "...",
       long_description = long_desc(),
       url = "https://github.com/jonsafari/match",
       author = "Jon Dehdari",
       author_email = "jon@dehdari.org",
       license = "GNU Lesser General Public License v3",
-      install_requires=['numpy'],
+      install_requires=['numpy', 'mxnet'],
       packages = find_packages(),
       classifiers = ["Programming Language :: Python :: 3",
                      "Programming Language :: Python :: 3.4",
-                     "Programming Language :: Python :: 3.5",
                      'Operating System :: OS Independent',
                     ],
       zip_safe = False
