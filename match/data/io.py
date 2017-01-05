@@ -20,11 +20,15 @@ class Data(dict):
             except OSError as err:
                 print(err)
 
+        # For language models, train_tgt can come from stdin
         if train_tgt:
-            try:
-                self.train_tgt_file = open(train_tgt)
-            except OSError as err:
-                print(err)
+            if train_tgt is sys.stdin:
+                self.train_tgt_file = sys.stdin
+            else:
+                try:
+                    self.train_tgt_file = open(train_tgt)
+                except OSError as err:
+                    print(err)
 
         if dev_src:
             try:
@@ -38,6 +42,24 @@ class Data(dict):
             except OSError as err:
                 print(err)
 
+
+    def unload(self, all=False, file=None):
+        # Close all open data files
+        if all:
+            for file in [self.train_src_file, self.train_tgt_file, self.dev_src_file, self.dev_tgt_file]:
+                if file is not None:
+                    try:
+                        file.close()
+                    except OSError as err:
+                        print(err)
+
+        # Close an individual file
+        else:
+            if file is not None:
+                try:
+                    file.close()
+                except OSError as err:
+                    print(err)
 
 
     def __repr__(self):
