@@ -1,0 +1,3 @@
+[submodule "toy-data"]
+	path = toy-data
+	url = https://github.com/jonsafari/toy-data
