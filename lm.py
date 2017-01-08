@@ -24,16 +24,20 @@ def main():
     parser.add_argument('--opt', type=str, default='adam', help="Optimizer")
     parser.add_argument('-v', '--verbose', action='count', default=0, help="Increase verbosity. You can use multiple of these.")
     args = parser.parse_args()
-    ...
+    print("Config: %s" % args, file=sys.stderr)
+
 
     # Load input data
     data = io.Data()
     data.load(train_tgt_filename=args.input)
-    print(data, file=sys.stderr)
+    print("Input sentences:", len(data.train_tgt), file=sys.stderr)
+    print("Alphabet size:  ", len(data.vocab_tgt), file=sys.stderr)
 
     # Build model
+    #model = model.Model(arch='lm', args=args)
 
     # Train model
+    #model.train()
 
 
 if __name__ == '__main__':
