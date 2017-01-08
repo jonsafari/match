@@ -28,7 +28,7 @@ def main():
     # Load input data
     data = io.Data()
     print(data)
-    data.load(train_tgt=args.input)
+    data.load(train_tgt_filename=args.input)
 
     # Build model
 

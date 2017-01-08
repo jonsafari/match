@@ -10,56 +10,41 @@ class Data(dict):
         self.vocab_src = self.vocab_tgt = {}
         self.train_src = self.train_tgt = []
         self.dev_src = self.dev_tgt = []
-        self.train_src_file = self.train_tgt_file = self.dev_src_file = self.dev_tgt_file = None
 
-    def load(self, train_src=None, train_tgt=None, dev_src=None, dev_tgt=None):
+    def load(self, train_src_filename=None, train_tgt_filename=None,
+            dev_src_filename=None, dev_tgt_filename=None):
         # Refactor this later
-        if train_src:
+        if train_src_filename:
             try:
-                self.train_src_file = open(train_src)
+                with open(train_src_filename) as f:
+                    self.train_src = f.read().split('\n')
             except OSError as err:
                 print(err)
 
         # For language models, train_tgt can come from stdin
-        if train_tgt:
-            if train_tgt is sys.stdin:
-                self.train_tgt_file = sys.stdin
+        if train_tgt_filename:
+            if train_tgt_filename is sys.stdin:
+                self.train_tgt = sys.stdin.read().split('\n')
             else:
                 try:
-                    self.train_tgt_file = open(train_tgt)
+                    with open(train_tgt_filename) as f:
+                        self.train_tgt = f.read().split('\n')
                 except OSError as err:
                     print(err)
 
-        if dev_src:
+        if dev_src_filename:
             try:
-                self.dev_src_file = open(dev_src)
+                with open(dev_src_filename) as f:
+                    self.dev_src = f.read().split('\n')
             except OSError as err:
                 print(err)
 
-        if dev_tgt:
+        if dev_tgt_filename:
             try:
-                self.dev_tgt_file = open(dev_tgt)
+                with open(dev_tgt_filename) as f:
+                    self.dev_tgt = f.read().split('\n')
             except OSError as err:
                 print(err)
-
-
-    def unload(self, all=False, file=None):
-        # Close all open data files
-        if all:
-            for file in [self.train_src_file, self.train_tgt_file, self.dev_src_file, self.dev_tgt_file]:
-                if file is not None:
-                    try:
-                        file.close()
-                    except OSError as err:
-                        print(err)
-
-        # Close an individual file
-        else:
-            if file is not None:
-                try:
-                    file.close()
-                except OSError as err:
-                    print(err)
 
 
     def __repr__(self):
