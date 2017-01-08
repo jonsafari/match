@@ -15,13 +15,13 @@ def main():
 
     parser.add_argument('--batch_size', type=int, default=16, help="Batch size")
     parser.add_argument('-d', '--dev', type=str, help="Load dev/tuning file")
-    parser.add_argument('--epochs', type=int, default=20, help="Maximum number of epochs")
+    parser.add_argument('--epochs', type=int, default=15, help="Maximum number of epochs")
     parser.add_argument('-i', '--in', dest='input', type=str, default=sys.stdin,
             help="Load input training file")
     parser.add_argument('--learning_rate', type=float, default=0.001, help="Learning rate")
     parser.add_argument('-m', '--model', help="Filename of model to load and/or save")
     parser.add_argument('-o', '--out', dest='output', type=str, default=sys.stdout, help="")
-    parser.add_argument('--opt', type=str, default='adam', help="Optimizer")
+    parser.add_argument('--optim', type=str, default='adam', help="Optimizer")
     parser.add_argument('-v', '--verbose', action='count', default=0, help="Increase verbosity. You can use multiple of these.")
     args = parser.parse_args()
     print("Config: %s" % args, file=sys.stderr)
