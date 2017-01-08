@@ -18,6 +18,7 @@ class Data(dict):
             try:
                 with open(train_src_filename) as f:
                     self.train_src = f.read().split('\n')
+                    self.train_src.pop()
             except OSError as err:
                 print(err)
 
@@ -25,10 +26,12 @@ class Data(dict):
         if train_tgt_filename:
             if train_tgt_filename is sys.stdin:
                 self.train_tgt = sys.stdin.read().split('\n')
+                self.train_tgt.pop()
             else:
                 try:
                     with open(train_tgt_filename) as f:
                         self.train_tgt = f.read().split('\n')
+                        self.train_tgt.pop()
                 except OSError as err:
                     print(err)
 
@@ -36,6 +39,7 @@ class Data(dict):
             try:
                 with open(dev_src_filename) as f:
                     self.dev_src = f.read().split('\n')
+                    self.dev_src.pop()
             except OSError as err:
                 print(err)
 
@@ -43,6 +47,7 @@ class Data(dict):
             try:
                 with open(dev_tgt_filename) as f:
                     self.dev_tgt = f.read().split('\n')
+                    self.dev_tgt.pop()
             except OSError as err:
                 print(err)
 

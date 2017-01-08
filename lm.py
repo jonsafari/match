@@ -27,8 +27,8 @@ def main():
 
     # Load input data
     data = io.Data()
-    print(data)
     data.load(train_tgt_filename=args.input)
+    print(data, file=sys.stderr)
 
     # Build model
 
