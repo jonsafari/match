@@ -7,7 +7,7 @@ import sys
 class Data(dict):
     def __init__(self):
         dict.__init__(self)
-        self.vocab_src = self.vocab_tgt = {}
+        self.vocab_src = self.vocab_tgt = set()
         self.train_src = self.train_tgt = []
         self.dev_src = self.dev_tgt = []
 
@@ -50,6 +50,11 @@ class Data(dict):
                     self.dev_tgt.pop()
             except OSError as err:
                 print(err)
+
+
+        # Build vocabulary
+        self.vocab_src = set(''.join(self.train_src))
+        self.vocab_tgt = set(''.join(self.train_tgt))
 
 
     def __repr__(self):
