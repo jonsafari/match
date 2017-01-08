@@ -22,6 +22,7 @@ def main():
     parser.add_argument('-m', '--model', help="Filename of model to load and/or save")
     parser.add_argument('-o', '--out', dest='output', type=str, default=sys.stdout, help="")
     parser.add_argument('--opt', type=str, default='adam', help="Optimizer")
+    parser.add_argument('-v', '--verbose', action='count', default=0, help="Increase verbosity. You can use multiple of these.")
     args = parser.parse_args()
     ...
 
